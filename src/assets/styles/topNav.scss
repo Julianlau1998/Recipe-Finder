@@ -1,0 +1,70 @@
+@import './variables.scss';
+
+.is-topnav {
+    width: 99.7vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $secondBackground;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    z-index: 2;
+    font-size: 1.8rem;
+}
+
+.settingsWrapper {
+    position: absolute;
+    top: 0.4rem;
+    right: 1rem;
+}
+
+.settings {
+    cursor: pointer;
+    font-size: 1.3rem;
+    border: 1px solid $secondary;
+    padding: 8px 1.5rem 7px 1.5rem;
+    border-radius: 5px;
+    background: $secondBackground;
+    position: absolute;
+    right: 2.6rem;
+    top: 3rem;
+    font-size: 1.5rem;
+}
+
+.is-smallIcon {
+    font-size: 1rem;
+    position: relative;
+    bottom: 0.13rem;
+}
+
+.is-icon-container {
+    white-space: nowrap;
+}
+
+.is-playBillingSetting {
+    line-height: 1 !important;
+}
+
+.setting:hover, .setting:active {
+    color: $secondary;
+}
+
+.setting {
+    margin-bottom: 10.7rem !important;
+}
+
+label.label input[type="file"] {
+    position: absolute;
+    top: -1000px;
+}
+  .label:invalid+span {
+    color: #000000;
+  }
+  .label:valid+span {
+    color: #ffffff;
+  }
+
+  .hr {
+      border-top: 2px solid $secondary;
+      margin: 10px;
+  }

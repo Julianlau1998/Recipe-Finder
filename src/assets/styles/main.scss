@@ -1,0 +1,310 @@
+@import './variables.scss';
+@import './helpers.scss';
+@import './topNav.scss';
+@import './settings.scss';
+@import './recipes.scss';
+@import '~bulma';
+
+
+html {
+    background-color: $mainBackground;
+    overflow-x: hidden;
+    text-align: center;
+}
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+
+    color: $font;
+}
+
+body {
+    margin: 6rem auto 10rem auto;
+    padding: 0 1rem;
+}
+
+.calculator {
+    margin: 0 auto;
+    max-width: 40rem;
+}
+
+.modal {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    width: 20rem;
+    height: 14rem;
+    background-color: $secondBackground;
+    border: 2px solid $secondary;
+    border-radius: 20px;
+    text-align: center; 
+    z-index: 11;
+}
+
+.is-modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $mainBackground;
+    z-index: 10;
+    opacity: 0.6;
+}
+
+.select {
+    width: 100%;
+    max-width: 11rem;
+    height: 2.5rem !important;
+    padding: 5px;
+    background-color: #2a343c;
+    border-radius: 10px;
+    color: #cbe5ff;
+    border: 3px solid #eedcff;
+    border-radius: 20px;
+    padding-left: 15px;
+    margin: 0 auto;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    margin-right: 2rem;
+    padding: 1rem;
+    padding-right: 2rem;
+  }
+
+.header {
+    color: rgb(169, 169, 169);
+}
+
+
+.button {
+    border: 2px solid $secondary !important;
+    border-radius: 20px;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin: 0.5rem;
+    
+    &.is-primary {
+        background-color: $secondBackground;
+        color: lightgray;
+        font-size: 1.3rem;
+    }
+    &.is-secondary {
+        background-color: $secondary;
+        color: black;
+        font-size: 1.3rem;
+    }
+    &.home {
+        padding-left: 1rem;
+        padding-right: 1rem; 
+        font-size: 1.2rem;
+    }
+    &.is-bottom-center {
+        position: fixed;
+        bottom: 0rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+i {
+   &.is-yellow {
+       color: yellow;
+   }
+}
+
+.is-text {
+    max-width: 30rem;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.hr {
+    &.bmiHeader {
+        margin-top: -1rem;
+        border-top: 2px solid #252525;
+    }
+    &.bmiBottom {
+        margin-top: -1rem;
+        border-top: 2px solid #252525;
+    }
+}
+
+.button:hover {
+    background-color: lightgray !important;
+    color: $secondBackground !important;
+}
+
+.input {
+    background: transparent;
+    border: 2px solid #436d88;
+    border-radius: 5px;
+    height: 0rem;
+    padding: 10px;
+    padding-bottom: 1.4rem;
+    padding-top: 1.1rem;
+    color: lightgray;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    width: 60%;
+    max-width: 18rem;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    }
+
+    .error {
+        color: #eedcff;
+    }
+
+    .slider {
+        width: 1.5rem;
+        height: 0.3rem;
+        background-color: #cbe5ff;
+        opacity: 0.6;
+        z-index: 100;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: 0.4rem;
+        border-radius: 20px;
+    }
+
+    .slider-container {
+        position: relative;
+        top: 3rem;
+    }
+
+    input[type="range"]::-webkit-color-swatch-wrapper {
+        -webkit-appearance: slider-vertical;
+    }
+    input[type=range] {
+        margin-top: 1.5rem;
+        -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+        width: 60%; /* Specific width is required for Firefox. */
+        max-width: 20rem;
+        background: #cbe5ff; /* Otherwise white in Chrome */
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    input[type=range]:focus {
+        outline: none; /* Removes the blue border. */
+    }
+
+    input[type=range]::-ms-track {
+        width: 100%;
+        cursor: pointer;
+
+        /* Hides the slider so custom styles can be added */
+        background: transparent; 
+        border-color: transparent;
+        color: transparent;
+    }
+
+    /* Special styling for WebKit/Blink */
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid #000000;
+        height: 30px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+        margin-top: -11px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+    }
+
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 36px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+    }
+    
+    /* Background */
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px #000000, 0px 0px 1px #0d0d0d;
+        border: 0.2px solid #010101;
+    }
+
+.is-current-page {
+    color: #eedcff;
+}
+
+.is-nav-element {
+    font-size: 1.6rem;
+}
+
+// transitions
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.fade-leave-to,
+.fade-enter {
+  opacity: 0;
+}
+
+.swipe-component-left-enter-active,
+.swipe-component-left-leave-active {
+    transition: transform 0.25s;
+}
+.swipe-component-left-enter {
+    transform: translateX(100%);
+}
+.swipe-component-left-enter-to {
+    transform: translateX(0%);
+}
+.swipe-component-left-leave {
+    transform: translateX(0%);
+}
+.swipe-component-left-leave-to {
+    transform: translateX(-100%);
+}
+
+.swipe-component-right-enter-active,
+.swipe-component-right-leave-active{
+    transition: transform 0.25s;
+}
+.swipe-component-right-enter {
+    transform: translateX(-100%);
+}
+.swipe-component-right-enter-to {
+    transform: translateX(0%);
+}
+.swipe-component-right-leave {
+    transform: translateX(0%);
+}
+.swipe-component-right-leave-to {
+    transform: translateX(100%);
+}
+
+@media (min-width: 769px) {
+    body {
+        padding: 0 5rem;
+    }
+}
