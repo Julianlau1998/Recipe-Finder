@@ -44,12 +44,20 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    categoryProp: {
+      required: false,
+      type: String,
+      default: 'vegetarian'
     }
   },
   data () {
     return {
       category: 'Vegetarian'
     }
+  },
+  created() {
+    this.category = this.categoryProp
   },
   methods: {
     changeCategory () {

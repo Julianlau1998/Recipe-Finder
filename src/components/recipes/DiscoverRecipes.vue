@@ -3,6 +3,7 @@
     <Recipes
         @changeCategory="getByCategory"
         :recipes="shuffleArray(recipes)"
+        :category-prop="category"
     />
   </div>
 </template>
