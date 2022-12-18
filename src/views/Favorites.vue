@@ -4,7 +4,15 @@
       Favorites
     </h3>
     <hr class="hr">
-    <Recipes :recipes="favorites" :isFilterHidden="true" />
+    <Recipes v-if="favorites.length" :recipes="favorites" :isFilterHidden="true" />
+    <div v-else class="mt-6">
+      <h4 class="header is-size-4">
+        No Favorites Yet
+      </h4>
+      <p>
+        Add a recipe to your favorites by clicking on the star icon above the recipe
+      </p>
+    </div>
     <button class="button is-primary is-bottom-center" @click="home">
       Home
     </button>

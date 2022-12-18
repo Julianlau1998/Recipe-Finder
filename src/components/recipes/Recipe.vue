@@ -18,15 +18,14 @@
         :alt="`${recipe.strMeal} image`"
     >
     <br>
-    <p class="mb-6 is-text" style="white-space: pre-line">
-      {{ instructions }}
-    </p>
-    <div>
-      <h4 class="header is-size-4 mb-3">
-        Ingredients:
-      </h4>
-      <div class="has-text-centered">
-        <p style="display: inline-block; text-align: left;">
+    <div class="columns mt-2-desktop">
+      <div class="column is-4">
+        <div>
+          <h4 class="header is-size-4 mb-3 has-text-right-desktop">
+            Ingredients:
+          </h4>
+          <div class="has-text-centered has-text-right-desktop">
+            <p style="display: inline-block; text-align: left;">
           <span v-for="i in 20" :key="`ingredient-${i}`">
             <span v-if="recipe[`strIngredient${i}`]">
               {{i}}.
@@ -34,6 +33,13 @@
               <br>
             </span>
           </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-8 has-text-left-mobile">
+        <p class="mb-6 is-text" style="white-space: pre-line">
+          {{ instructions }}
         </p>
       </div>
     </div>

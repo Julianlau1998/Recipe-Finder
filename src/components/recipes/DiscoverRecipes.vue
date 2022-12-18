@@ -23,13 +23,18 @@ export default {
       return (!this.recipesModule.recipes.loading && this.recipesModule.recipes.data.meals) || []
     }
   },
+  data () {
+    return {
+      category: 'Vegetarian'
+    }
+  },
   created () {
     const category = JSON.parse(localStorage.getItem('category'))
     if (category !== null && category !== undefined) {
       this.category = category
       this.getByCategory(category)
     } else {
-      this.getByCategory()
+¥      this.getByCategory()
     }
   },
   methods: {
