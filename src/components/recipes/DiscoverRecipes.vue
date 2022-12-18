@@ -34,7 +34,7 @@ export default {
       this.category = category
       this.getByCategory(category)
     } else {
-¥      this.getByCategory()
+      this.getByCategory()
     }
   },
   methods: {
