@@ -1,20 +1,19 @@
 <template>
   <div>
-    <select v-if="!isFilterHidden" @change="changeCategory($event)" class="select mt-3 mb-3" id="select" v-model="category">
-      <option value="Breakfast">Breakfast</option>
-      <option value="Dessert">Dessert</option>
-      <option value="Vegetarian">Vegetarian</option>
-      <option value="Pasta">Pasta</option>
-      <option value="Vegan">Vegan</option>
-      <option value="Beef">Beef</option>
-      <option value="Chicken">Chicken</option>
-      <option value="Pork">Pork</option>
-      <option value="Lamb">Lamb</option>
-      <option value="Goat">Goat</option>
-      <option value="Side">Side</option>
-      <option value="Seafood">Seafood</option>
-      <option value="Side">Side</option>
-      <option value="Starter">Starter</option>
+    <select
+        v-if="!isFilterHidden"
+        @change="changeCategory($event)"
+        class="select mt-3 mb-3"
+        id="select"
+        v-model="category"
+    >
+      <option
+          v-for="(category, index) in categories"
+          :key="`category-${index}`"
+          :value="category.id"
+      >
+        {{ category.title }}
+      </option>
     </select>
       <div class="columns is-multiline is-justify-content-center">
         <MiniRecipe
@@ -48,12 +47,17 @@ export default {
     categoryProp: {
       required: false,
       type: String,
-      default: 'vegetarian'
+      default: '1'
+    },
+    categories: {
+      type: Array,
+      required: false,
+      default: () => []
     }
   },
   data () {
     return {
-      category: 'Vegetarian'
+      category: '1'
     }
   },
   created() {

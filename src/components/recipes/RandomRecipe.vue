@@ -19,11 +19,8 @@ export default {
   },
   computed: {
     ...mapState(['recipesModule']),
-    recipes () {
-      return (!this.recipesModule.recipe.loading && this.recipesModule.recipe.data) || []
-    },
     recipe () {
-      return this.recipes.meals ? this.recipes.meals[0] : {}
+      return (!this.recipesModule.recipe.loading && this.recipesModule.recipe.data[0]) || []
     }
   },
   created () {

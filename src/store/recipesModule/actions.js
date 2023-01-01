@@ -7,33 +7,9 @@ const config = {
 };
 
 export function getRandom ({ commit }) {
-  commit('GET_RECIPE')
-  axios
-    .get('https://themealdb.p.rapidapi.com/random.php', config)
-    .then(response => {
-      commit('RECEIVE_RECIPE', response.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
-
-export function getByCategory ({ commit }, category='vegetarian') {
-  commit('GET_RECIPES')
-  axios
-      .get(`https://themealdb.p.rapidapi.com/filter.php?c=${category}`, config)
-      .then(response => {
-        commit('RECEIVE_RECIPES', response.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-}
-
-export function getById ({ commit }, id) {
     commit('GET_RECIPE')
     axios
-        .get(`https://themealdb.p.rapidapi.com/lookup.php?i=${id}`, config)
+        .get('/api/recipes/random')
         .then(response => {
             commit('RECEIVE_RECIPE', response.data)
         })
@@ -41,3 +17,98 @@ export function getById ({ commit }, id) {
             console.log(err)
         })
 }
+
+export async function getAll ({ commit, state }, offset = '0') {
+    if (offset === 0 || offset === undefined) {
+        state.recipes.data = []
+    }
+    return new Promise((resolve, reject) => {
+        commit('GET_RECIPES')
+        axios
+            .get(`/api/recipes?offset=${offset}`)
+            .then(response => {
+                commit('RECEIVE_RECIPES', { recipes: response.data, offset: offset })
+                resolve()
+            })
+            .catch(err => {
+                console.log(err)
+                reject()
+            })
+    })
+}
+
+export function getByCategory ({ commit, state }, { category, offset }) {
+    if (offset === 0 || offset === undefined) {
+        state.recipes.data = []
+    }
+    commit('GET_RECIPES')
+    axios
+        .get(`/api/recipes/category/${category}?offset=${offset}`)
+        .then(response => {
+            commit('RECEIVE_RECIPES', {recipes: response.data, offset: offset})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+export function getById ({ commit }, id) {
+    commit('GET_RECIPE')
+    axios
+        .get(`/api/recipes/${id}`)
+        .then(response => {
+            commit('RECEIVE_RECIPE', response.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+export async function post ({ commit }, recipe) {
+    return new Promise((resolve, reject) => {
+        commit('POST_RECIPE')
+        axios
+            .post(`/api/recipes`, recipe)
+            .then(response => {
+                commit('RECIPE_POSTED', response.data)
+                resolve()
+            })
+            .catch(err => {
+                console.log(err)
+                reject()
+            })
+    })
+}
+
+export async function getByIdMealDB ({ commit }, id) {
+    return new Promise((resolve, reject) => {
+        commit('GET_RECIPE')
+        axios
+            .get(`https://themealdb.p.rapidapi.com/lookup.php?i=${id}`, config)
+            .then(response => {
+                commit('RECEIVE_RECIPE', response.data)
+                resolve()
+            })
+            .catch(err => {
+                console.log(err)
+                reject()
+            })
+    })
+}
+
+export function getByCategoryMealDB ({ commit }, category='vegetarian') {
+    return new Promise((resolve, reject) => {
+        commit('GET_MEALDB_RECIPES')
+        axios
+            .get(`https://themealdb.p.rapidapi.com/filter.php?c=${category}`, config)
+            .then(response => {
+                commit('RECEIVE_MEALDB_RECIPES', response.data)
+                resolve()
+            })
+            .catch(err => {
+                console.log(err)
+                reject()
+            })
+    })
+}
+

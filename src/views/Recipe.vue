@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex"
+import {mapActions, mapState} from "vuex"
 import Recipe from "@/components/recipes/Recipe"
 
 export default {
@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapState(['recipesModule']),
     recipe () {
-      return (!this.recipesModule.recipe.loading && this.recipesModule.recipe.data.meals[0]) || []
+      return (!this.recipesModule.recipe.loading && this.recipesModule.recipe.data) || []
     }
   },
   created () {
@@ -32,9 +32,9 @@ export default {
     this.getById(this.id)
   },
   methods: {
-    getById (id) {
-      this.$store.dispatch('recipesModule/getById', id)
-    },
+    ...mapActions({
+      getById: 'recipesModule/getById'
+    }),
     goBack () {
       this.$router.go(-1)
     }

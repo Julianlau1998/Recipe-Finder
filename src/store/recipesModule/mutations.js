@@ -13,7 +13,34 @@ export function GET_RECIPES (state) {
   state.err = null
 }
 
-export function RECEIVE_RECIPES (state, note) {
-  state.recipes.data = note
+export function RECEIVE_RECIPES (state, { recipes, offset }) {
+  if (!recipes.length) {
+    state.recipes.finished = true
+  } else {
+    state.recipes.finished = false
+  }
+  if (offset !== 0 && offset !== undefined) {
+    state.recipes.data = state.recipes.data.concat(recipes)
+  } else {
+    state.recipes.data = recipes
+  }
   state.recipes.loading = false
+}
+
+export function GET_MEALDB_RECIPES (state) {
+  state.mealDBRecipes.loading = true
+  state.err = null
+}
+
+export function RECEIVE_MEALDB_RECIPES (state, note) {
+  state.mealDBRecipes.data = note
+  state.mealDBRecipes.loading = false
+}
+
+export function POST_RECIPE (state) {
+  state.recipe.posting = true
+}
+
+export function RECIPE_POSTED (state) {
+  state.recipe.posting = false
 }

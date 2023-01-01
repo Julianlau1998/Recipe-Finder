@@ -1,21 +1,28 @@
 <template>
   <div class="home">
     <i
-        class="fas fa-star is-pointer mt-2"
+        class="fas fa-star is-pointer mt-2 mb-2"
         @click="toggleFavorite"
         :class="favorite ? 'is-yellow' : ''"
     />
     <br>
     <h1 class="header is-size-3">
-      {{ recipe.strMeal ? recipe.strMeal : 'Loading...' }}
+      {{ recipe.title ? recipe.title : 'Loading...' }}
     </h1>
-    <p class="mb-5 is-fourth">
-      {{ recipe.strCategory ? recipe.strCategory : 'Loading...' }}
+    <p class="mb-3 is-fourth">
+      {{ recipe.category ? recipe.category : 'Loading...' }}
     </p>
+    <div v-if="shareAvailable">
+      <i
+          class="fa-solid fas fa-share pointer is-secondary mb-3 mt-3"
+          @click="share"
+          :class="favorite ? 'is-yellow' : ''"
+      />
+    </div>
     <img
-        class="is-header-image mb-5 mt-5"
-        :src="recipe.strMealThumb ? recipe.strMealThumb : 'https://via.placeholder.com/450'"
-        :alt="`${recipe.strMeal} image`"
+        class="is-header-image mb-5 mt-3"
+        :src="recipe.image ? recipe.image : 'https://via.placeholder.com/450'"
+        :alt="`${recipe.title} image`"
     >
     <br>
     <div class="columns mt-2-desktop">
@@ -26,10 +33,10 @@
           </h4>
           <div class="has-text-centered has-text-right-desktop">
             <p style="display: inline-block; text-align: left;">
-          <span v-for="i in 20" :key="`ingredient-${i}`">
-            <span v-if="recipe[`strIngredient${i}`]">
-              {{i}}.
-              {{ recipe[`strIngredient${i}`] }}
+          <span v-for="( ingredient, index ) in recipe.ingredients" :key="`ingredient-${index}`">
+            <span v-if="ingredient">
+              {{index+1}}.
+              {{ ingredient.Ingredient }}
               <br>
             </span>
           </span>
@@ -64,9 +71,10 @@ export default {
   },
   watch: {
     recipe(val) {
-      if (val?.idMeal) {
+      this.favorite = false
+      if (val?.id) {
         this.favorites.forEach(favorite => {
-          if (favorite.idMeal === val.idMeal) {
+          if (favorite.id === val.id) {
             this.favorite = true
           }
         })
@@ -83,8 +91,11 @@ export default {
   },
   computed: {
     instructions () {
-      if (!this.recipe.strInstructions) return ''
-      return this.recipe.strInstructions.replaceAll(/\. /g, '.\n')
+      if (!this.recipe.description) return ''
+      return this.recipe.description.replaceAll(/\. /g, '.\n')
+    },
+    shareAvailable () {
+      return navigator.share !== undefined
     }
   },
   methods: {
@@ -95,11 +106,18 @@ export default {
         localStorage.setItem('favorites', JSON.stringify(this.favorites))
       } else {
         this.favorites = this.favorites.filter((favorite) => {
-          return favorite.idMeal !== this.recipe.idMeal
+          return favorite.id !== this.recipe.id
         })
         console.log(this.favorites)
         localStorage.setItem('favorites', JSON.stringify(this.favorites))
       }
+    },
+    share () {
+      navigator.share({
+        text: this.recipe.text,
+        title: this.recipe.title,
+        files: [this.recipe.img]
+      })
     }
   }
 }

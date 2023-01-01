@@ -11,6 +11,9 @@ Vue.config.productionTip = false
 
 require('@/assets/styles/main.scss')
 
+let infiniteScroll =  require('vue-infinite-scroll');
+Vue.use(infiniteScroll)
+
 
 new Vue({
   router,
