@@ -1,9 +1,14 @@
 import axios from 'axios'
 
+let host = 'https://api.recipe-search.com'
+if (process.env.VUE_APP_ENV === "DEV") {
+  host = ''
+}
+
 export function getAll ({ commit }) {
   commit('GET_CATEGORIES')
   axios
-    .get('/api/categories')
+    .get(`${host}/api/categories`)
     .then(response => {
       commit('RECEIVE_CATEGORIES', response.data)
     })
@@ -14,7 +19,7 @@ export function getAll ({ commit }) {
 export function getOne ({ commit }, id) {
   commit('GET_CATEGORY')
   axios
-    .get(`/api/categories/${id}`)
+    .get(`${host}/api/categories/${id}`)
     .then(response => {
       commit('RECEIVE_CATEGORY', response.data)
     })
@@ -25,7 +30,7 @@ export function getOne ({ commit }, id) {
 export function post ({ commit }, category) {
   commit('POST_CATEGORY')
   axios
-    .post('/api/categories', category)
+    .post(`${host}/api/categories`, category)
     .then(function () {
       commit('CATEGORY_POSTED')
     })
@@ -36,7 +41,7 @@ export function post ({ commit }, category) {
 export function deleteOne ({ commit }, id) {
   commit('DELETE_CATEGORY')
   axios
-    .delete(`/api/categories/${id}`)
+    .delete(`${host}/api/categories/${id}`)
     .then(function () {
       commit('CATEGORY_DELETED')
     })
@@ -47,7 +52,7 @@ export function deleteOne ({ commit }, id) {
 export function put ({ commit }, category) {
   commit('PUT_CATEGORY')
   axios
-    .put(`/api/categories/${category.id}`, category)
+    .put(`${host}/api/categories/${category.id}`, category)
     .then(function () {
       commit('CATEGORY_PUT')
     })

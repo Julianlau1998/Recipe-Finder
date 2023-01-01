@@ -6,10 +6,15 @@ const config = {
   }
 };
 
+let host = 'https://api.recipe-search.com'
+if (process.env.VUE_APP_ENV === "DEV") {
+    host = ''
+}
+
 export function getRandom ({ commit }) {
     commit('GET_RECIPE')
     axios
-        .get('/api/recipes/random')
+        .get(`${host}/api/recipes/random`)
         .then(response => {
             commit('RECEIVE_RECIPE', response.data)
         })
@@ -25,7 +30,7 @@ export async function getAll ({ commit, state }, offset = '0') {
     return new Promise((resolve, reject) => {
         commit('GET_RECIPES')
         axios
-            .get(`/api/recipes?offset=${offset}`)
+            .get(`${host}/api/recipes?offset=${offset}`)
             .then(response => {
                 commit('RECEIVE_RECIPES', { recipes: response.data, offset: offset })
                 resolve()
@@ -43,7 +48,7 @@ export function getByCategory ({ commit, state }, { category, offset }) {
     }
     commit('GET_RECIPES')
     axios
-        .get(`/api/recipes/category/${category}?offset=${offset}`)
+        .get(`${host}/api/recipes/category/${category}?offset=${offset}`)
         .then(response => {
             commit('RECEIVE_RECIPES', {recipes: response.data, offset: offset})
         })
@@ -55,7 +60,7 @@ export function getByCategory ({ commit, state }, { category, offset }) {
 export function getById ({ commit }, id) {
     commit('GET_RECIPE')
     axios
-        .get(`/api/recipes/${id}`)
+        .get(`${host}/api/recipes/${id}`)
         .then(response => {
             commit('RECEIVE_RECIPE', response.data)
         })
@@ -68,7 +73,7 @@ export async function post ({ commit }, recipe) {
     return new Promise((resolve, reject) => {
         commit('POST_RECIPE')
         axios
-            .post(`/api/recipes`, recipe)
+            .post(`${host}/api/recipes`, recipe)
             .then(response => {
                 commit('RECIPE_POSTED', response.data)
                 resolve()
