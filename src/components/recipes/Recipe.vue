@@ -135,7 +135,8 @@ export default {
       ingredients = ingredients.toString().replaceAll(',', '\n')
       await navigator.share({
         text: `${this.recipe.title}: \n\n\n${this.recipe.description} \n\n\nIngredients: \n\n${ingredients}`,
-        files: filesArray
+        files: filesArray,
+        url: !this.$store.state.iOS ? 'https://play.google.com/store/apps/details?id=com.recipe_finder_jl.app&gl=DE' : 'https://apps.apple.com/de/app/recipe-finder-cookbook/id1662386400?l=en'
       })
     }
   }
