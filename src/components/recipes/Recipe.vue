@@ -11,6 +11,10 @@
     </h1>
     <p class="mb-3 is-fourth">
       {{ recipe.category ? recipe.category : 'Loading...' }}
+      &nbsp;
+      <span class="mb-3 is-third">
+        {{ recipe.country ? recipe.country : 'Loading...' }}
+      </span>
     </p>
     <div v-if="shareAvailable">
       <i
