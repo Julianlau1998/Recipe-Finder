@@ -16,7 +16,7 @@
         {{ recipe.country ? recipe.country : 'Loading...' }}
       </span>
     </p>
-    <div v-if="shareAvailable" class="mt-negative-1 mb-negative-1">
+    <div v-if="shareAvailable" class="mt-negative-1">
       <img
           @click="share"
           class="is-share-icon"
