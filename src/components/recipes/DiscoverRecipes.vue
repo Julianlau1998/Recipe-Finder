@@ -161,7 +161,10 @@ export default {
                 recipe.country = fetchedRecipe.strArea
                 for (let i = 1; i < 21; i++) {
                   if (fetchedRecipe[`strIngredient${i}`]) {
-                    recipe.ingredients.push({"ingredient": fetchedRecipe[`strIngredient${i}`]})
+                    recipe.ingredients.push({
+                      "ingredient": fetchedRecipe[`strIngredient${i}`],
+                      "measurement": fetchedRecipe[`strMeasure${i}`]
+                    })
                   }
                 }
                 this.allFetchedRecipes.push(recipe)
