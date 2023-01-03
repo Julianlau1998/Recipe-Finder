@@ -113,7 +113,7 @@ export default {
     },
     share () {
       navigator.share({
-        text: this.recipe.text,
+        text: this.recipe.description,
         title: this.recipe.title,
         files: [this.recipe.image]
       })
