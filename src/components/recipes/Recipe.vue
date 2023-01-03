@@ -111,11 +111,23 @@ export default {
         localStorage.setItem('favorites', JSON.stringify(this.favorites))
       }
     },
-    share () {
+    async share () {
+      const response = await fetch(this.recipe.image)
+      const blob = await response.blob()
+      const filesArray = [
+        new File(
+            [blob],
+            `${this.recipe.title}.jpg`,
+            {
+              type: "image/jpeg",
+              lastModified: new Date().getTime()
+            }
+        )
+      ]
       navigator.share({
         text: this.recipe.description,
         title: this.recipe.title,
-        files: [this.recipe.image]
+        files: filesArray
       })
     }
   }

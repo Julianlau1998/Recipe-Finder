@@ -20,7 +20,7 @@ export default {
   computed: {
     ...mapState(['recipesModule']),
     recipe () {
-      return (!this.recipesModule.recipe.loading && this.recipesModule.recipe.data[0]) || []
+      return (!this.recipesModule.recipe.loading && this.recipesModule.recipe.data[0]) || {}
     }
   },
   created () {
