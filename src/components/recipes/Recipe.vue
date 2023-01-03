@@ -126,7 +126,6 @@ export default {
       ]
       let ingredients = this.recipe.ingredients.map((ingredient, index) => `${index+1}. ${ingredient.Ingredient}`)
       ingredients = ingredients.toString().replaceAll(',', '\n')
-      console.log(`${this.recipe.title}: \n\n\n${this.recipe.description} \n\n\nIngredients: \n\n${ingredients}`)
       await navigator.share({
         text: `${this.recipe.title}: \n\n\n${this.recipe.description} \n\n\nIngredients: \n\n${ingredients}`,
         title: this.recipe.title,
