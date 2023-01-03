@@ -128,7 +128,6 @@ export default {
       ingredients = ingredients.toString().replaceAll(',', '\n')
       await navigator.share({
         text: `${this.recipe.title}: \n\n\n${this.recipe.description} \n\n\nIngredients: \n\n${ingredients}`,
-        title: this.recipe.title,
         files: filesArray
       })
     }
