@@ -12,7 +12,7 @@
     <p class="mb-3 is-fourth">
       {{ recipe.category ? recipe.category : 'Loading...' }}
     </p>
-    <div>
+    <div v-if="shareAvailable">
       <i
           class="fa-solid fas fa-share pointer is-secondary mb-3 mt-3"
           @click="share"
