@@ -108,7 +108,6 @@ export default {
         this.favorites = this.favorites.filter((favorite) => {
           return favorite.id !== this.recipe.id
         })
-        console.log(this.favorites)
         localStorage.setItem('favorites', JSON.stringify(this.favorites))
       }
     },
@@ -116,7 +115,7 @@ export default {
       navigator.share({
         text: this.recipe.text,
         title: this.recipe.title,
-        files: [this.recipe.img]
+        files: [this.recipe.image]
       })
     }
   }

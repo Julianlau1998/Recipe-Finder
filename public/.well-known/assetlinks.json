@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.recipe_finder_jl.app",
+      "sha256_cert_fingerprints":
+      ["EB:9D:DE:27:2A:E9:11:1F:58:A2:CB:72:75:75:34:00:20:EC:C4:5F:3C:3C:D6:E3:4B:BC:9A:B0:6E:77:C7:37"]
+    }
+  }
+]
