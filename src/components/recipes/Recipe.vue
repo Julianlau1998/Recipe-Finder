@@ -9,22 +9,22 @@
     <h1 class="header is-size-3">
       {{ recipe.title ? recipe.title : 'Loading...' }}
     </h1>
-    <p class="mb-3 is-fourth">
+    <p class="is-fourth">
       {{ recipe.category ? recipe.category : 'Loading...' }}
       &nbsp;
       <span class="mb-3 is-third">
         {{ recipe.country ? recipe.country : 'Loading...' }}
       </span>
     </p>
-    <div v-if="shareAvailable">
-      <i
-          class="fa-solid fas fa-share pointer is-secondary mb-3 mt-3"
+    <div v-if="shareAvailable" class="mt-negative-1 mb-negative-1">
+      <img
           @click="share"
-          :class="favorite ? 'is-yellow' : ''"
+          class="is-share-icon"
+          src="../../../public/img/share.png" alt="share"
       />
     </div>
     <img
-        class="is-header-image mb-5 mt-3"
+        class="is-header-image mb-5"
         :src="recipe.image ? recipe.image : 'https://via.placeholder.com/450'"
         :alt="`${recipe.title} image`"
     >
@@ -35,18 +35,18 @@
           <h4 class="header is-size-4 mb-3 has-text-right-desktop">
             Ingredients:
           </h4>
-          <div class="has-text-centered has-text-right-desktop">
+          <div class="has-text-centered has-text-right-desktop is-small-text">
             <p style="display: inline-block; text-align: left;">
-          <span v-for="( ingredient, index ) in recipe.ingredients" :key="`ingredient-${index}`">
-            <span v-if="ingredient">
-<!--              {{index+1}}.-->
-              <span v-if="ingredient.measurement">
-                {{ ingredient.measurement.replace('1 cups', '1 cup') }}
+              <span v-for="( ingredient, index ) in recipe.ingredients" :key="`ingredient-${index}`">
+                <span v-if="ingredient">
+    <!--              {{index+1}}.-->
+                  <span v-if="ingredient.measurement">
+                    {{ ingredient.measurement.replace('1 cups', '1 cup') }}
+                  </span>
+                  {{ ingredient.ingredient }}
+                  <br>
+                </span>
               </span>
-              {{ ingredient.ingredient }}
-              <br>
-            </span>
-          </span>
             </p>
           </div>
         </div>
@@ -131,7 +131,7 @@ export default {
             }
         )
       ]
-      let ingredients = this.recipe.ingredients.map((ingredient, index) => `${index+1}. ${ingredient.Ingredient}`)
+      let ingredients = this.recipe.ingredients.map((ingredient, index) => `${index+1}. ${ingredient.ingredient}`)
       ingredients = ingredients.toString().replaceAll(',', '\n')
       await navigator.share({
         text: `${this.recipe.title}: \n\n\n${this.recipe.description} \n\n\nIngredients: \n\n${ingredients}`,
