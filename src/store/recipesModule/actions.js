@@ -23,14 +23,14 @@ export function getRandom ({ commit }) {
         })
 }
 
-export async function getAll ({ commit, state }, offset = '0') {
+export async function getAll ({ commit, state }, {offset = '0', random = '0'}) {
     if (offset === 0 || offset === undefined) {
         state.recipes.data = []
     }
     return new Promise((resolve, reject) => {
         commit('GET_RECIPES')
         axios
-            .get(`${host}/api/recipes?offset=${offset}`)
+            .get(`${host}/api/recipes?offset=${offset}&randomisation=${random}`)
             .then(response => {
                 commit('RECEIVE_RECIPES', { recipes: response.data, offset: offset })
                 resolve()
@@ -42,13 +42,13 @@ export async function getAll ({ commit, state }, offset = '0') {
     })
 }
 
-export function getByCategory ({ commit, state }, { category, offset }) {
+export function getByCategory ({ commit, state }, { category, offset, random }) {
     if (offset === 0 || offset === undefined) {
         state.recipes.data = []
     }
     commit('GET_RECIPES')
     axios
-        .get(`${host}/api/recipes/category/${category}?offset=${offset}`)
+        .get(`${host}/api/recipes/category/${category}?offset=${offset}&randomisation=${random}`)
         .then(response => {
             commit('RECEIVE_RECIPES', {recipes: response.data, offset: offset})
         })

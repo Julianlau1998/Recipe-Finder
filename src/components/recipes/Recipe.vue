@@ -9,7 +9,7 @@
     <h1 class="header is-size-3">
       {{ recipe.title ? recipe.title : 'Loading...' }}
     </h1>
-    <p class="is-fourth">
+    <p class="is-fourth" :class="!shareAvailable ? 'mb-3' : ''">
       {{ recipe.category ? recipe.category : 'Loading...' }}
       &nbsp;
       <span class="mb-3 is-third">

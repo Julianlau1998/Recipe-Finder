@@ -37,7 +37,8 @@ export default {
     return {
       category: '1',
       allFetchedRecipes: [],
-      offset: 0
+      offset: 0,
+      randomisation: 0
     }
   },
   created () {
@@ -89,13 +90,15 @@ export default {
     //     .then(() => {
     //       this.migrateFromMealDB('73aacae5-21ca-4cc6-71da-15568a8cb542', false, false)
     //     })
+
+    this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
     this.getCategories()
     const category = JSON.parse(localStorage.getItem('category'))
     if (category !== null && category !== undefined && category !== '1' ) {
       this.category = category
-      this.getByCategory({category: category, offset: this.offset})
+      this.getByCategory({category: category, offset: this.offset, random: this.randomisation })
     } else {
-      this.getAll()
+      this.getAll({ offset: '0', random: this.randomisation })
     }
   },
   methods: {
@@ -121,18 +124,19 @@ export default {
       if (this.recipesModule.recipes.loading || this.recipesModule.recipes.finished) return
       this.offset += 20
       if (this.category !== null && this.category !== undefined && this.category !== '1' ) {
-        this.getByCategory({category: this.category, offset: this.offset})
+        this.getByCategory({category: this.category, offset: this.offset, random: this.randomisation })
       } else {
-        this.getAll(this.offset)
+        this.getAll({ offset: this.offset, random: this.randomisation })
       }
     },
     changeCategory(category) {
+      this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
       this.offset = 0
       this.category = category
       if (category === '1') {
-        this.getAll(0)
+        this.getAll({ offset: 0, random: this.randomisation })
       } else {
-        this.getByCategory({category: category, offset: 0})
+        this.getByCategory({category: category, offset: 0, random: this.randomisation })
       }
     },
     migrateFromMealDB (categoryID, is_vegetarian, is_vegan) {
