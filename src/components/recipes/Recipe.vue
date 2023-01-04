@@ -12,7 +12,7 @@
     <p class="is-fourth" :class="!shareAvailable ? 'mb-3' : ''">
       {{ recipe.category ? recipe.category : 'Loading...' }}
       &nbsp;
-      <span class="mb-3 is-third">
+      <span v-if="recipe.country !== 'Unknown'" class="mb-3 is-third">
         {{ recipe.country ? recipe.country : 'Loading...' }}
       </span>
     </p>
