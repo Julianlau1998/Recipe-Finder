@@ -67,8 +67,10 @@ export default {
     categories (val) {
       if (val.length > 0) {
         const savedCategory = this.$route.query
-        this.category = this.categories.filter(category => category.title === savedCategory.category)[0].id
-        this.$emit('changeCategory', this.category)
+        if (savedCategory?.category) {
+          this.category = this.categories.filter(category => category.title === savedCategory.category)[0].id
+          this.$emit('changeCategory', this.category)
+        }
       }
     }
   },

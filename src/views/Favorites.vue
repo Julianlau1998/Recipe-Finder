@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-touch:swipe="swipeHandler">
     <h3 class="header is-size-3">
       Favorites
     </h3>
@@ -38,6 +38,12 @@ export default {
   methods: {
     home () {
       this.$router.push('/')
+    },
+    swipeHandler (direction) {
+      if (direction === 'right') {
+        this.componentTransitionName = 'swipe-component-right'
+        this.$router.push('/')
+      }
     }
   }
 }
