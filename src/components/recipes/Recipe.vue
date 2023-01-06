@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div v-touch:swipe="swipeHandler" class="home">
     <i
         class="fas fa-star is-pointer mt-2 mb-2"
         @click="toggleFavorite"
@@ -150,6 +150,12 @@ export default {
       }
       if (this.$route.path === '/') {
         this.$emit('changePage')
+      }
+    },
+    swipeHandler (direction) {
+      if (direction === 'right') {
+        this.componentTransitionName = 'swipe-component-right'
+        this.$router.go(-1)
       }
     }
   }

@@ -74,7 +74,7 @@ export default {
         this.page = 0
         localStorage.setItem('page', 0)
       }
-    },
+    }
   }
 }
 
