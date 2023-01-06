@@ -60,12 +60,23 @@ export default {
       category: '1'
     }
   },
-  created() {
+  created () {
     this.category = this.categoryProp
+  },
+  watch: {
+    categories (val) {
+      if (val.length > 0) {
+        const savedCategory = this.$route.query
+        this.category = this.categories.filter(category => category.title === savedCategory.category)[0].id
+        this.$emit('changeCategory', this.category)
+      }
+    }
   },
   methods: {
     changeCategory () {
       localStorage.setItem('category', JSON.stringify(this.category))
+      const category = this.categories.filter(category => category.id === this.category)[0].title
+      this.$router.push(`/?category=${category}`)
       this.$emit('changeCategory', this.category)
     }
   }

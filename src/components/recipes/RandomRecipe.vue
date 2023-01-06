@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Recipe :recipe="recipe" @getRandom="getRandom" />
+    <Recipe :recipe="recipe" @getRandom="getRandom" @changePage="$emit('changePage')" />
     <button class="button is-primary is-bottom-center" @click="getRandom">
       Get Random Recipe
     </button>

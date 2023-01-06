@@ -6,16 +6,21 @@
         :class="favorite ? 'is-yellow' : ''"
     />
     <br>
-    <h1 class="header is-size-3">
-      {{ recipe.title ? recipe.title : 'Loading...' }}
-    </h1>
-    <p class="is-fourth" :class="!shareAvailable ? 'mb-3' : ''">
-      {{ recipe.category ? recipe.category : 'Loading...' }}
+    <p
+        class="is-fourth"
+        :class="!shareAvailable ? 'mb-3' : ''"
+    >
+      <span @click="openCategory">
+        {{ recipe.category ? recipe.category : 'Loading...' }}
+      </span>
       &nbsp;
       <span v-if="recipe.country !== 'Unknown'" class="mb-3 is-third">
         {{ recipe.country ? recipe.country : 'Loading...' }}
       </span>
     </p>
+    <h1 class="header is-size-3">
+      {{ recipe.title ? recipe.title : 'Loading...' }}
+    </h1>
     <div v-if="shareAvailable" class="mt-negative-1">
       <img
           @click="share"
@@ -138,6 +143,14 @@ export default {
         files: filesArray,
         url: !this.$store.state.iOS ? 'https://play.google.com/store/apps/details?id=com.recipe_finder_jl.app&gl=DE' : 'https://apps.apple.com/de/app/recipe-finder-cookbook/id1662386400?l=en'
       })
+    },
+    openCategory () {
+      if (`${this.$route.path}?category=${this.$route.query.category}` !== `/?category=${this.recipe.category}`) {
+        this.$router.push(`/?category=${this.recipe.category}`)
+      }
+      if (this.$route.path === '/') {
+        this.$emit('changePage')
+      }
     }
   }
 }

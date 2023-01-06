@@ -93,13 +93,8 @@ export default {
 
     this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
     this.getCategories()
-    const category = JSON.parse(localStorage.getItem('category'))
-    if (category !== null && category !== undefined && category !== '1' ) {
-      this.category = category
-      this.getByCategory({category: category, offset: this.offset, random: this.randomisation })
-    } else {
-      this.getAll({ offset: '0', random: this.randomisation })
-    }
+    const category = JSON.parse(localStorage.getItem('category') !== undefined ? localStorage.getItem('category') : null)
+    this.loadCategory(category)
   },
   methods: {
     ...mapActions({
@@ -111,6 +106,14 @@ export default {
       getByCategoryMealDB: 'recipesModule/getByCategoryMealDB',
       getByIdMealDB: 'recipesModule/getByIdMealDB'
     }),
+    loadCategory(category) {
+      if (category !== null && category !== undefined && category !== '1' ) {
+        this.category = category
+        this.getByCategory({category: category, offset: this.offset, random: this.randomisation })
+      } else {
+        this.getAll({ offset: '0', random: this.randomisation })
+      }
+    },
     shuffleArray (array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
