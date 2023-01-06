@@ -1,9 +1,9 @@
 <template>
   <div v-touch:swipe="swipeHandler" class="home">
     <i
-        class="fas fa-star is-pointer mt-2 mb-2"
+        class="fas fa-star icon is-pointer mt-2 mb-2"
         @click="toggleFavorite"
-        :class="favorite ? 'is-yellow' : ''"
+        :class="favorite ? 'is-yellow' : 'is-outlined'"
     />
     <br>
     <p

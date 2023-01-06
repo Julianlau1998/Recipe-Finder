@@ -191,6 +191,13 @@ i {
     }
 }
 
+.icon {
+    &.is-outlined {
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px;
+    }
+}
+
 input[type=number] {
     -moz-appearance: textfield;
     }
