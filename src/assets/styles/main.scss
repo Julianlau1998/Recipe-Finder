@@ -206,6 +206,7 @@ i {
     &.is-allow-click {
         pointer-events: all !important;
         cursor: pointer;
+        z-index: 0 !important;
     }
     &.is-outlined {
         -webkit-text-fill-color: transparent;
