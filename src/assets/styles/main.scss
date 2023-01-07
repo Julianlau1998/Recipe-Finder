@@ -123,6 +123,13 @@ select {
     }
 }
 
+.columns {
+    &.fixed-width {
+        max-width: 55rem;
+        margin: 0 auto;
+    }
+}
+
 i {
    &.is-yellow {
        color: yellow;
@@ -174,33 +181,46 @@ i {
     background: transparent;
     border: 2px solid #436d88;
     border-radius: 5px;
-    height: 0rem;
     padding: 10px;
-    padding-bottom: 1.4rem;
-    padding-top: 1.1rem;
     color: lightgray;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    width: 60%;
-    max-width: 18rem;
 
     &.is-secondary {
-        border: 2px solid $secondary;
+        border: 3px solid $secondary;
         border-radius: 20px;
         margin: 0 auto;
     }
 }
 
+.field {
+    max-width: 11rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 769px) {
+    .field {
+        max-width: 12.5rem;
+    }
+}
+
 .icon {
+    &.is-allow-click {
+        pointer-events: all !important;
+        cursor: pointer;
+    }
     &.is-outlined {
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke: 1px;
+    }
+    &.is-search-icon {
+        position: relative;
+        right: 2rem;
+        top: 0.6rem;
     }
 }
 
 input[type=number] {
     -moz-appearance: textfield;
-    }
+}
 
     .error {
         color: #eedcff;
@@ -284,6 +304,11 @@ input[type=number] {
         cursor: pointer;
         box-shadow: 2px 2px 2px #000000, 0px 0px 1px #0d0d0d;
         border: 0.2px solid #010101;
+    }
+
+    .input::placeholder {
+        color: gray;
+        opacity: 1;
     }
 
 .is-current-page {

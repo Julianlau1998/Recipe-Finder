@@ -1,12 +1,13 @@
 <template>
-  <div @click="openRecipe" class="column is-half-tablet is-4-desktop is-3-widescreen">
+  <div class="column is-half-tablet is-4-desktop is-3-widescreen">
     <img
+        @click="openRecipe"
         class="is-small-image mt-5 is-pointer"
         :src="recipe.image"
         :alt="`${recipe.title}-image`"
     >
     <br>
-    <h3 class="header miniRecipe is-size-4 is-secondary is-pointer">
+    <h3 @click="openRecipe" class="header miniRecipe is-size-4 is-secondary is-pointer">
       {{ recipe.title }}
     </h3>
   </div>
