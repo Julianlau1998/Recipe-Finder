@@ -14,7 +14,7 @@
         {{ recipe.category ? recipe.category : 'Loading...' }}
       </span>
       &nbsp;
-      <span v-if="recipe.country !== 'Unknown'" class="mb-3 is-third">
+      <span v-if="recipe.country !== 'Unknown'" @click="openCountry" class="mb-3 is-third">
         {{ recipe.country ? recipe.country : 'Loading...' }}
       </span>
     </p>
@@ -147,6 +147,14 @@ export default {
     openCategory () {
       if (`${this.$route.path}?category=${this.$route.query.category}` !== `/?category=${this.recipe.category}`) {
         this.$router.push(`/?category=${this.recipe.category}`)
+      }
+      if (this.$route.path === '/') {
+        this.$emit('changePage')
+      }
+    },
+    openCountry () {
+      if (`${this.$route.path}?country=${this.$route.query.country}` !== `/?country=${this.recipe.country}`) {
+        this.$router.push(`/?country=${this.recipe.country}`)
       }
       if (this.$route.path === '/') {
         this.$emit('changePage')

@@ -3,6 +3,7 @@
     <Recipes
         @changeCategory="changeCategory"
         @search="changeCategory(category, $event)"
+        @searchCountry="changeCategory('1', $event)"
         :recipes="recipes"
         :category-prop="category"
         :categories="categories"

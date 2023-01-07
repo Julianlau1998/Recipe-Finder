@@ -4,7 +4,12 @@
       Favorites
     </h3>
     <hr class="hr">
-    <Recipes v-if="favorites.length" :recipes="favorites" :isFilterHidden="true" />
+    <Recipes
+        v-if="favorites.length"
+        :recipes="favorites"
+        :isFilterHidden="true"
+        :isSearchHidden="true"
+    />
     <div v-else class="mt-6">
       <h4 class="header is-size-4">
         No Favorites Yet

@@ -3,7 +3,7 @@
     <div class="columns fixed-width is-vcentered is-centered">
       <div class="column is-3 is-vcentered pt-2 pb-0">
         <div class="field">
-          <div class="control has-icons-right">
+          <div v-if="!isSearchHidden" class="control has-icons-right">
             <input
                 v-model="fulltext"
                 @input="debounceSearch"
@@ -72,6 +72,11 @@ export default {
       type: Boolean,
       default: false
     },
+    isSearchHidden: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
     categoryProp: {
       required: false,
       type: String,
@@ -98,10 +103,15 @@ export default {
   watch: {
     categories (val) {
       if (val.length > 0) {
-        const savedCategory = this.$route.query
-        if (savedCategory?.category) {
-          this.category = this.categories.filter(category => category.title === savedCategory.category)[0].id
+        const queries = this.$route.query
+        if (queries.category) {
+          this.category = this.categories.filter(category => category.title === queries.category)[0].id
           this.$emit('changeCategory', this.category)
+        }
+        if (queries?.country) {
+          this.fulltext = queries.country
+          this.category = '1'
+          this.$emit('searchCountry', queries.country)
         }
       }
     },
