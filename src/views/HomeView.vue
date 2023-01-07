@@ -47,10 +47,15 @@ export default {
   },
   created () {
     const page = localStorage.getItem('page')
-    if (page === null || page === undefined) {
+    if ((page === null || page === undefined) && !this.$route.query.category?.length && !this.$route.query.country?.length) {
       this.page = 0
+      console.log(1)
+    } else if (this.$route.query.category?.length || this.$route.query.country?.length) {
+      this.page = 1
+      console.log(2)
     } else {
       this.page = parseInt(page)
+      console.log(3)
     }
   },
   watch: {
