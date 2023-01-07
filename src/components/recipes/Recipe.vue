@@ -7,14 +7,14 @@
     />
     <br>
     <p
-        class="is-fourth"
+        class="is-fourth is-pointer"
         :class="!shareAvailable ? 'mb-3' : ''"
     >
       <span @click="openCategory">
         {{ recipe.category ? recipe.category : 'Loading...' }}
       </span>
       &nbsp;
-      <span v-if="recipe.country !== 'Unknown'" @click="openCountry" class="mb-3 is-third">
+      <span v-if="recipe.country !== 'Unknown'" @click="openCountry" class="mb-3 is-third is-pointer">
         {{ recipe.country ? recipe.country : 'Loading...' }}
       </span>
     </p>

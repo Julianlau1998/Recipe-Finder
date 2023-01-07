@@ -125,11 +125,12 @@ export default {
     changeCategory () {
       localStorage.setItem('category', JSON.stringify(this.category))
       const category = this.categories.filter(category => category.id === this.category)[0].title
-      this.$router.push(`/?category=${category}`)
+      this.$router.push(`?category=${category}`)
       this.$emit('changeCategory', this.category)
     },
 
     debounceSearch: debounce(function (e) {
+      this.$router.push(`?country=${e.target.value}`)
       this.$emit('search', e.target.value)
     }, 200),
 
