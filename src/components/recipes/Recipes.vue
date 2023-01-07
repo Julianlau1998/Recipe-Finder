@@ -136,6 +136,7 @@ export default {
 
     clearSearch () {
       this.fulltext=''
+      this.$router.push(`?country=`)
       if (this.fulltext.length) {
         this.fulltext=''
       }
