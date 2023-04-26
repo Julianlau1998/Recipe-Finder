@@ -45,55 +45,6 @@ export default {
     }
   },
   created () {
-    // this.getByCategoryMealDB('Beef')
-    //     .then(() => {
-    //       this.migrateFromMealDB('744070fb-b130-4674-6f20-1481e5fba200', false, false)
-    //     })
-    // this.getByCategoryMealDB('Pasta')
-    //     .then(() => {
-    //       this.migrateFromMealDB('a0245507-5276-4736-6609-255a3860ce0b', false, false)
-    //     })
-    // this.getByCategoryMealDB('Vegetarian')
-    //     .then(() => {
-    //       this.migrateFromMealDB('d05a7f75-b21a-4723-4d71-d6767502f1d0', true, false)
-    //     })
-    // this.getByCategoryMealDB('Vegan')
-    //     .then(() => {
-    //       this.migrateFromMealDB('fc79b73f-63b8-474c-5f50-81c7fb83b3df', true, true)
-    //     })
-    // this.getByCategoryMealDB('Dessert')
-    //     .then(() => {
-    //       this.migrateFromMealDB('e052de13-0b05-40d5-7ea6-9fdefb57d8ed', true, false)
-    //     })
-    // this.getByCategoryMealDB('Breakfast')
-    //     .then(() => {
-    //       this.migrateFromMealDB('9cd33c5e-e74e-409a-6646-5d4c3bfad655', false, false)
-    //     })
-    // this.getByCategoryMealDB('Chicken')
-    //     .then(() => {
-    //       this.migrateFromMealDB('1183223e-682a-4d8b-6e1c-feacf0dc7e9c', false, false)
-    //     })
-    // this.getByCategoryMealDB('Pork')
-    //     .then(() => {
-    //       this.migrateFromMealDB('31ca7fe5-7117-4ec8-725a-a5dad96234fd', false, false)
-    //     })
-    // this.getByCategoryMealDB('Lamb')
-    //     .then(() => {
-    //       this.migrateFromMealDB('625595b7-e598-4501-4069-106a3fd2b11e', false, false)
-    //     })
-    // this.getByCategoryMealDB('Starter')
-    //     .then(() => {
-    //       this.migrateFromMealDB('2650f7a3-84b5-433a-78bd-b67441894cc7', false, false)
-    //     })
-    // this.getByCategoryMealDB('Seafood')
-    //     .then(() => {
-    //       this.migrateFromMealDB('fa21cc6a-33e4-4c39-509c-cc42c7a43728', false, false)
-    //     })
-    // this.getByCategoryMealDB('Side')
-    //     .then(() => {
-    //       this.migrateFromMealDB('73aacae5-21ca-4cc6-71da-15568a8cb542', false, false)
-    //     })
-
     this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
     this.getCategories()
     const category = JSON.parse(localStorage.getItem('category') !== undefined ? localStorage.getItem('category') : null)
