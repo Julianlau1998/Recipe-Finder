@@ -1,4 +1,4 @@
-# gas_price_calculator
+# recipe_finder
 
 ## Project setup
 ```
