@@ -1,22 +1,9 @@
 <template>
-  <div v-touch:swipe="swipeHandler" class="is-flex-center mt-7">
-    <div>
-      <span
-          class="is-pointer is-nav-element mr-1"
-          :class="page===0 ? 'is-current-page' : ''"
-          @click="page=0"
-      >
-        Random
-      </span>
-      <span
-          class="is-pointer is-nav-element ml-1"
-          :class="page===1 ? 'is-current-page' : ''"
-          @click="page=1"
-      >
-        Discover
-      </span>
-    </div>
-    <hr class="hr">
+  <div
+      v-touch:swipe="swipeHandler"
+      class="is-flex-center mt-7"
+  >
+    <PageSelector :page="page" @changePage="changePage" />
     <transition
         :name= componentTransitionName
         mode="out-in"
@@ -25,17 +12,21 @@
       <RandomRecipe @changePage="page=1" v-if="page===0" />
       <DiscoverRecipes @home="page=0" @changePage="page=1" v-else />
     </transition>
+
   </div>
 </template>
 
 <script>
 import RandomRecipe from "@/components/recipes/RandomRecipe"
 import DiscoverRecipes from "@/components/recipes/DiscoverRecipes"
+import PageSelector from "@/components/base/PageSelector"
 
 export default {
+  name: "Home-view",
   components: {
     DiscoverRecipes,
-    RandomRecipe
+    RandomRecipe,
+    PageSelector
   },
   data () {
     return {
@@ -46,32 +37,39 @@ export default {
     }
   },
   created () {
-    const page = localStorage.getItem('page')
-    if ((page === null || page === undefined) && !this.$route.query.category?.length && !this.$route.query.country?.length) {
-      this.page = 0
-    } else if (this.$route.query.category?.length || this.$route.query.country?.length) {
+    const page = parseInt(localStorage.getItem('page'))
+    if (this.isValueSelected || page === 1) {
       this.page = 1
     } else {
-      this.page = parseInt(page)
+      this.page = 0
     }
   },
   watch: {
     page (val) {
       if (val === 0) {
         this.componentTransitionName = 'swipe-component-right'
-        localStorage.setItem('page', 0)
+        localStorage.setItem('page', '0')
       } else {
         this.componentTransitionName = 'swipe-component-left'
-        localStorage.setItem('page', 1)
+        localStorage.setItem('page', '1')
       }
     }
   },
+  computed: {
+    isValueSelected () {
+      return this.$route.query.category?.length || this.$route.query.country?.length
+    }
+  },
   methods: {
+    changePage (page) {
+      this.page = page
+      if (this.isValueSelected) this.$router.replace('/')
+    },
     swipeHandler (direction) {
-      if (this.page === 0 && direction == 'left') {
+      if (this.page === 0 && direction === 'left') {
         this.componentTransitionName = 'swipe-component-left'
         this.page = 1
-      } else if ( this.page === 1 && direction == 'right') {
+      } else if ( this.page === 1 && direction === 'right') {
         this.componentTransitionName = 'swipe-component-right'
         this.page = 0
         localStorage.setItem('page', 0)

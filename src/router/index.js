@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/Home.vue'
 import Recipe from '../views/Recipe'
 import Favorites from "@/views/Favorites"
 

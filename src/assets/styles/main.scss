@@ -3,6 +3,7 @@
 @import './topNav.scss';
 @import './settings.scss';
 @import './recipes.scss';
+@import './transitions.scss';
 @import '~bulma';
 
 
@@ -317,52 +318,6 @@ input[type=number] {
 
 .is-nav-element {
     font-size: 1.6rem;
-}
-
-// transitions
-.fade-enter-active,
-.fade-leave-active {
-  opacity: 1;
-  transition: opacity 0.15s;
-}
-
-.fade-leave-to,
-.fade-enter {
-  opacity: 0;
-}
-
-.swipe-component-left-enter-active,
-.swipe-component-left-leave-active {
-    transition: transform 0.25s;
-}
-.swipe-component-left-enter {
-    transform: translateX(100%);
-}
-.swipe-component-left-enter-to {
-    transform: translateX(0%);
-}
-.swipe-component-left-leave {
-    transform: translateX(0%);
-}
-.swipe-component-left-leave-to {
-    transform: translateX(-100%);
-}
-
-.swipe-component-right-enter-active,
-.swipe-component-right-leave-active{
-    transition: transform 0.25s;
-}
-.swipe-component-right-enter {
-    transform: translateX(-100%);
-}
-.swipe-component-right-enter-to {
-    transform: translateX(0%);
-}
-.swipe-component-right-leave {
-    transform: translateX(0%);
-}
-.swipe-component-right-leave-to {
-    transform: translateX(100%);
 }
 
 @media (min-width: 769px) {
