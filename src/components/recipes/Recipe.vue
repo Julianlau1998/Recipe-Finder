@@ -30,6 +30,7 @@
     </div>
     <img
         class="is-header-image mb-5"
+        :class="!shareAvailable ? 'mt-3' : ''"
         :src="recipe.image ? recipe.image : 'https://via.placeholder.com/450'"
         :alt="`${recipe.title} image`"
     >
@@ -44,7 +45,6 @@
             <p style="display: inline-block; text-align: left;">
               <span v-for="( ingredient, index ) in recipe.ingredients" :key="`ingredient-${index}`">
                 <span v-if="ingredient">
-    <!--              {{index+1}}.-->
                   <span v-if="ingredient.measurement">
                     {{ ingredient.measurement.replace('1 cups', '1 cup') }}
                   </span>

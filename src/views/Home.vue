@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import RandomRecipe from "@/components/recipes/RandomRecipe"
-import DiscoverRecipes from "@/components/recipes/DiscoverRecipes"
+import RandomRecipe from "@/components/Home/RandomRecipe"
+import DiscoverRecipes from "@/components/Home/DiscoverRecipes"
 import PageSelector from "@/components/base/PageSelector"
 
 export default {

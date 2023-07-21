@@ -45,7 +45,7 @@ export default {
     }
   },
   created () {
-    this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
+    this.setRandom()
     this.getCategories()
     const category = JSON.parse(localStorage.getItem('category') !== undefined ? localStorage.getItem('category') : null)
     if (category !== null && category !== undefined && category !== '1' ) {
@@ -57,30 +57,26 @@ export default {
   },
   methods: {
     ...mapActions({
-      getById: 'recipesModule/getById',
-      postRecipe: 'recipesModule/post',
       getAll: 'recipesModule/getAll',
       getByCategory: 'recipesModule/getByCategory',
       getCategories: 'categoriesModule/getAll',
-      getByCategoryMealDB: 'recipesModule/getByCategoryMealDB',
-      getByIdMealDB: 'recipesModule/getByIdMealDB'
     }),
-    shuffleArray (array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        const temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-      }
-      return(array)
-    },
     loadMore () {
       if (this.recipesModule.recipes.loading || this.recipesModule.recipes.finished) return
       this.offset += 20
       if (this.category !== null && this.category !== undefined && this.category !== '1' ) {
-        this.getByCategory({category: this.category, offset: this.offset, random: this.randomisation, fulltext: this.fulltext })
+        this.getByCategory({
+          category: this.category,
+          offset: this.offset,
+          random: this.randomisation,
+          fulltext: this.fulltext
+        })
       } else {
-        this.getAll({ offset: this.offset, random: this.randomisation, fulltext: this.fulltext })
+        this.getAll({
+          offset: this.offset,
+          random: this.randomisation,
+          fulltext: this.fulltext
+        })
       }
     },
     changeCategory(category, fulltext='') {
@@ -89,7 +85,7 @@ export default {
       } else {
         this.fulltext = fulltext
       }
-      this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
+      this.setRandom()
       this.offset = 0
       this.category = category
       if (category === '1') {
@@ -98,45 +94,8 @@ export default {
         this.getByCategory({category: category, offset: 0, random: this.randomisation, fulltext: fulltext })
       }
     },
-    migrateFromMealDB (categoryID, is_vegetarian, is_vegan) {
-      let fetchedRecipe
-      setTimeout(async () => {
-        this.recipesModule.mealDBRecipes.data.meals.forEach((smallRecipe) => {
-          this.getByIdMealDB(smallRecipe.idMeal)
-              .then(() => {
-                let recipe = {
-                  title: "",
-                  description: "",
-                  ingredients: [],
-                  duration: "",
-                  category: "",
-                  image: "",
-                  country: "",
-                  is_vegetarian: is_vegetarian,
-                  is_vegan: is_vegan
-                }
-                fetchedRecipe = this.recipesModule.recipe.data.meals[0]
-                recipe.title = fetchedRecipe.strMeal
-                recipe.description = fetchedRecipe.strInstructions.replaceAll(/\. /g, '.\n')
-                recipe.duration = "0"
-                recipe.category = categoryID
-                recipe.image = fetchedRecipe.strMealThumb
-                recipe.country = fetchedRecipe.strArea
-                for (let i = 1; i < 21; i++) {
-                  if (fetchedRecipe[`strIngredient${i}`]) {
-                    recipe.ingredients.push({
-                      "ingredient": fetchedRecipe[`strIngredient${i}`],
-                      "measurement": fetchedRecipe[`strMeasure${i}`]
-                    })
-                  }
-                }
-                this.allFetchedRecipes.push(recipe)
-                this.postRecipe(recipe)
-
-              })
-          console.log(this.allFetchedRecipes)
-        })
-      }, 2000 )
+    setRandom () {
+      this.randomisation = JSON.stringify(Math.floor(Math.random() * 10)+1)
     }
   }
 }

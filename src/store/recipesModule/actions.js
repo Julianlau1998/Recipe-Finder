@@ -1,11 +1,5 @@
 import axios from 'axios'
 
-const config = {
-  headers:{
-    'x-rapidapi-key': process.env.VUE_APP_API_KEY
-  }
-};
-
 let host = 'https://api.recipe-search.com'
 if (process.env.VUE_APP_ENV === "DEV") {
     host = ''
@@ -24,7 +18,7 @@ export function getRandom ({ commit }) {
 }
 
 export async function getAll ({ commit, state }, {offset = '0', random = '0', fulltext = ''}) {
-    if (offset === 0 || offset === undefined) {
+    if (parseInt(offset) === 0 || offset === undefined) {
         state.recipes.data = []
     }
     return new Promise((resolve, reject) => {
@@ -84,36 +78,3 @@ export async function post ({ commit }, recipe) {
             })
     })
 }
-
-export async function getByIdMealDB ({ commit }, id) {
-    return new Promise((resolve, reject) => {
-        commit('GET_RECIPE')
-        axios
-            .get(`https://themealdb.p.rapidapi.com/lookup.php?i=${id}`, config)
-            .then(response => {
-                commit('RECEIVE_RECIPE', response.data)
-                resolve()
-            })
-            .catch(err => {
-                console.log(err)
-                reject()
-            })
-    })
-}
-
-export function getByCategoryMealDB ({ commit }, category='vegetarian') {
-    return new Promise((resolve, reject) => {
-        commit('GET_MEALDB_RECIPES')
-        axios
-            .get(`https://themealdb.p.rapidapi.com/filter.php?c=${category}`, config)
-            .then(response => {
-                commit('RECEIVE_MEALDB_RECIPES', response.data)
-                resolve()
-            })
-            .catch(err => {
-                console.log(err)
-                reject()
-            })
-    })
-}
-

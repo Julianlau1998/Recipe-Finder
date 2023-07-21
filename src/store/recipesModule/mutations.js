@@ -27,16 +27,6 @@ export function RECEIVE_RECIPES (state, { recipes, offset }) {
   state.recipes.loading = false
 }
 
-export function GET_MEALDB_RECIPES (state) {
-  state.mealDBRecipes.loading = true
-  state.err = null
-}
-
-export function RECEIVE_MEALDB_RECIPES (state, note) {
-  state.mealDBRecipes.data = note
-  state.mealDBRecipes.loading = false
-}
-
 export function POST_RECIPE (state) {
   state.recipe.posting = true
 }
