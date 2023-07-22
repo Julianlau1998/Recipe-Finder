@@ -2,21 +2,13 @@
   <div>
     <div class="columns fixed-width is-vcentered is-centered">
       <div class="column is-3 is-vcentered pt-2 pb-0">
-        <div class="field">
-          <div v-if="!isSearchHidden" class="control has-icons-right">
-            <input
-                v-model="fulltext"
-                @input="debounceSearch"
-                class="input is-success is-secondary"
-                type="text"
-                placeholder="Search"
-            >
-            <span class="icon is-small is-right is-allow-click mr-1" @click="clearSearch">
-              <i v-if="!fulltext.length" class="fas fa-search"></i>
-              <i v-else class="fas fa-eraser"></i>
-            </span>
-          </div>
-        </div>
+        <SearchBar
+            v-if="!isSearchHidden"
+            v-model="fulltext"
+            @input="debounceSearch"
+            :fulltextProp="fulltext"
+            :clearSearch="clearSearch"
+        />
       </div>
 
       <div class="column is-3 pt-2 pb-0">
@@ -54,12 +46,14 @@
 <script>
 import MiniRecipe from "@/components/recipes/MiniRecipe";
 import {debounce} from "lodash"
-import {mapState} from "vuex";
+import {mapState} from "vuex"
+import SearchBar from "@/components/base/SearchBar"
 
 export default {
   name: "Recipes-component",
   components: {
-    MiniRecipe
+    MiniRecipe,
+    SearchBar
   },
   props: {
     recipes: {
@@ -130,8 +124,8 @@ export default {
     },
 
     debounceSearch: debounce(function (e) {
-      this.$router.push(`?country=${e.target.value}`)
-      this.$emit('search', e.target.value)
+      this.$router.push(`?country=${e}`)
+      this.$emit('search', e)
     }, 200),
 
     clearSearch () {
