@@ -5,7 +5,7 @@
         @search="changeCategory(category, $event)"
         @searchCountry="changeCategory('1', $event)"
         :recipes="recipes"
-        :category-prop="category"
+        :category="category"
         :categories="categories"
     />
     <div v-if="recipesModule.recipes.loading" class="columns is-centered mt-6">

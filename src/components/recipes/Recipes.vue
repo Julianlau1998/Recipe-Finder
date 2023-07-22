@@ -10,23 +10,13 @@
             :clearSearch="clearSearch"
         />
       </div>
-
       <div class="column is-3 pt-2 pb-0">
-        <select
+        <Dropdown
             v-if="!isFilterHidden"
-            @change="changeCategory($event)"
-            class="select mt-3 mb-3"
-            id="select"
-            v-model="category"
-        >
-          <option
-              v-for="(category, index) in categories"
-              :key="`category-${index}`"
-              :value="category.id"
-          >
-            {{ category.title }}
-          </option>
-        </select>
+            :value="category"
+            :categories="categories"
+            @change="changeCategory"
+        />
       </div>
     </div>
 
@@ -48,12 +38,14 @@ import MiniRecipe from "@/components/recipes/MiniRecipe";
 import {debounce} from "lodash"
 import {mapState} from "vuex"
 import SearchBar from "@/components/base/SearchBar"
+import Dropdown from "@/components/base/Dropdown"
 
 export default {
   name: "Recipes-component",
   components: {
     MiniRecipe,
-    SearchBar
+    SearchBar,
+    Dropdown
   },
   props: {
     recipes: {
@@ -71,7 +63,7 @@ export default {
       type: Boolean,
       default: false
     },
-    categoryProp: {
+    category: {
       required: false,
       type: String,
       default: '1'
@@ -84,39 +76,34 @@ export default {
   },
   data () {
     return {
-      category: '1',
       fulltext: ''
     }
-  },
-  created () {
-    this.category = this.categoryProp
   },
   computed: {
     ...mapState(['recipesModule'])
   },
   watch: {
     categories (val) {
-      if (val.length > 0) {
-        const queries = this.$route.query
-        if (queries.category) {
-          this.category = this.categories.filter(category => category.title === queries.category)[0].id
-          this.$emit('changeCategory', this.category)
-        }
-        if (queries?.country) {
-          this.fulltext = queries.country
-          this.category = '1'
-          this.$emit('searchCountry', queries.country)
-        }
+      if (!val.length) return
+
+      const queries = this.$route.query
+      if (queries.category) {
+        this.category = this.categories.filter(category => category.title === queries.category)[0].id
+        this.$emit('changeCategory', this.category)
+      }
+      if (queries?.country) {
+        this.fulltext = queries.country
+        this.category = '1'
+        this.$emit('searchCountry', queries.country)
       }
     },
     fulltext (val) {
-      if (!val.length) {
-        this.$emit('search', '')
-      }
+      if (!val.length) this.$emit('search', '')
     }
   },
   methods: {
-    changeCategory () {
+    changeCategory (event) {
+      this.category = event.target.value
       localStorage.setItem('category', JSON.stringify(this.category))
       const category = this.categories.filter(category => category.id === this.category)[0].title
       this.$router.push(`?category=${category}`)

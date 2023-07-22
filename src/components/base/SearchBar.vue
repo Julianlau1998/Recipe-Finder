@@ -2,14 +2,14 @@
   <div class="SearchBar">
     <div class="control has-icons-right">
       <input
-          v-model="fulltext"
-          @input="$emit('input', fulltext)"
+          :value="value"
+          @input="$emit('input', $event.target.value)"
           class="input is-success is-secondary"
           type="text"
           placeholder="Search"
       >
       <span class="icon is-small is-right is-allow-click mr-1" @click="clear">
-        <i v-if="!fulltext.length" class="fas fa-search"></i>
+        <i v-if="!value.length" class="fas fa-search"></i>
         <i v-else class="fas fa-eraser"></i>
       </span>
     </div>
@@ -24,28 +24,15 @@ export default {
       type: Function,
       required: true
     },
-    fulltextProp: {
+    value: {
       type: String,
       required: false,
       default: ''
     }
   },
-  data () {
-    return {
-      fulltext: ''
-    }
-  },
-  created () {
-    this.fulltext = this.fulltextProp
-  },
-  watch: {
-    fulltextProp (val) {
-      this.fulltext = val
-    }
-  },
   methods: {
     clear () {
-      this.fulltext = ''
+      this.value = ''
       this.clearSearch()
     }
   }
