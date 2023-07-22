@@ -5,28 +5,18 @@
         @click="toggleFavorite"
         :class="favorite ? 'is-yellow' : 'is-outlined'"
     />
-    <br>
-    <p
-        class="is-fourth is-pointer"
-        :class="!shareAvailable ? 'mb-3' : ''"
-    >
-      <span @click="openCategory">
-        {{ recipe.category ? recipe.category : 'Loading...' }}
-      </span>
-      &nbsp;
-      <span v-if="recipe.country !== 'Unknown'" @click="openCountry" class="mb-3 is-third is-pointer">
-        {{ recipe.country ? recipe.country : 'Loading...' }}
-      </span>
-    </p>
+    <categoryInfo
+      :share-available="shareAvailable"
+      :category="category"
+      :country="country"
+      :open-category="openCategory"
+      :open-country="openCountry"
+    />
     <h1 class="header is-size-3">
-      {{ recipe.title ? recipe.title : 'Loading...' }}
+      {{ title }}
     </h1>
     <div v-if="shareAvailable" class="mt-negative-1">
-      <img
-          @click="share"
-          class="is-share-icon"
-          src="../../../public/img/share.png" alt="share"
-      />
+      <Share class="mt-negative-1" @share="share" />
     </div>
     <img
         class="is-header-image mb-5"
@@ -34,40 +24,18 @@
         :src="recipe.image ? recipe.image : 'https://via.placeholder.com/450'"
         :alt="`${recipe.title} image`"
     >
-    <br>
-    <div class="columns mt-2-desktop">
-      <div class="column is-4">
-        <div>
-          <h4 class="header is-size-4 mb-3 has-text-right-desktop">
-            Ingredients:
-          </h4>
-          <div class="has-text-centered has-text-right-desktop is-small-text">
-            <p style="display: inline-block; text-align: left;">
-              <span v-for="( ingredient, index ) in recipe.ingredients" :key="`ingredient-${index}`">
-                <span v-if="ingredient">
-                  <span v-if="ingredient.measurement">
-                    {{ ingredient.measurement.replace('1 cups', '1 cup') }}
-                  </span>
-                  {{ ingredient.ingredient }}
-                  <br>
-                </span>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="column is-8 has-text-left-mobile">
-        <p class="mb-6 is-text" style="white-space: pre-line">
-          {{ instructions }}
-        </p>
-      </div>
-    </div>
+    <Instructions :recipe="recipe" />
   </div>
 </template>
 
 <script>
+import Instructions from "@/components/recipes/Instructions"
+import CategoryInfo from "@/components/recipes/CategoryInfo"
+import Share from "@/components/base/Share"
+
 export default {
   name: "Recipe-component",
+  components: { CategoryInfo, Instructions, Share },
   props: {
     recipe: {
       type: Object,
@@ -94,33 +62,42 @@ export default {
     }
   },
   created() {
-    const favorites = JSON.parse(localStorage.getItem('favorites'))
-    if (favorites === null || favorites === undefined) {
-      this.favorites = []
-    } else {
-      this.favorites = favorites
-    }
+    this.getFavorites()
   },
   computed: {
-    instructions () {
-      if (!this.recipe.description) return ''
-      return this.recipe.description.replaceAll(/\. /g, '.\n')
-    },
     shareAvailable () {
       return navigator.share !== undefined
+    },
+    category () {
+      return this.recipe.category ? this.recipe.category : 'Loading...'
+    },
+    country () {
+      return this.recipe.country ? this.recipe.country : 'Loading...'
+    },
+    title () {
+      return this.recipe.title ? this.recipe.title : 'Loading...'
     }
   },
   methods: {
+    getFavorites () {
+      const favorites = JSON.parse(localStorage.getItem('favorites'))
+      if (favorites === null || favorites === undefined) {
+        this.favorites = []
+      } else {
+        this.favorites = favorites
+      }
+    },
+    setFavorites (favorites) {
+      localStorage.setItem('favorites', JSON.stringify(favorites))
+    },
     toggleFavorite () {
       this.favorite = !this.favorite
       if (this.favorite) {
         this.favorites.push(this.recipe)
-        localStorage.setItem('favorites', JSON.stringify(this.favorites))
+        this.setFavorites(this.favorites)
       } else {
-        this.favorites = this.favorites.filter((favorite) => {
-          return favorite.id !== this.recipe.id
-        })
-        localStorage.setItem('favorites', JSON.stringify(this.favorites))
+        this.favorites = this.favorites.filter((favorite) => favorite.id !== this.recipe.id)
+        this.setFavorites(this.favorites)
       }
     },
     async share () {
