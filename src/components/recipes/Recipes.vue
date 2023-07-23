@@ -13,7 +13,7 @@
       <div class="column is-3 pt-2 pb-0">
         <Dropdown
             v-if="!isFilterHidden"
-            :value="category"
+            :value-prop="category"
             :categories="categories"
             @change="changeCategory"
         />
@@ -63,7 +63,7 @@ export default {
       type: Boolean,
       default: false
     },
-    category: {
+    categoryProp: {
       required: false,
       type: String,
       default: '1'
@@ -76,7 +76,8 @@ export default {
   },
   data () {
     return {
-      fulltext: ''
+      fulltext: '',
+      category: ''
     }
   },
   computed: {
@@ -100,6 +101,9 @@ export default {
     fulltext (val) {
       if (!val.length) this.$emit('search', '')
     }
+  },
+  created () {
+    this.category = this.categoryProp
   },
   methods: {
     changeCategory (event) {

@@ -1,0 +1,156 @@
+@import './variables.scss';
+
+.button {
+  border: 2px solid $secondary !important;
+  border-radius: 20px !important;
+  padding: 0.5rem !important;
+  cursor: pointer;
+  margin: 0.5rem !important;
+
+  &.is-primary {
+    background-color: $secondBackground !important;
+    color: lightgray !important;
+    font-size: 1.3rem;
+  }
+  &.is-secondary {
+    background-color: $secondary !important;
+    color: black !important;
+    font-size: 1.3rem;
+  }
+  &.home {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.2rem;
+  }
+  &.is-bottom-center {
+    position: fixed;
+    bottom: 0rem;
+    left: 50%;
+    transform: translate(-55%, -50%);
+  }
+}
+
+.input {
+  background: transparent !important;
+  border: 2px solid #436d88;
+  padding: 10px;
+
+  &.is-secondary {
+    border: 3px solid $secondary !important;
+    border-radius: 20px;
+    margin: 0 auto !important;
+  }
+}
+
+.input::placeholder {
+  color: gray !important;
+  opacity: 1;
+}
+
+.icon {
+  &.is-allow-click {
+    pointer-events: all !important;
+    cursor: pointer;
+    z-index: 0 !important;
+  }
+  &.is-outlined {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+  }
+  &.is-search-icon {
+    position: relative;
+    right: 2rem;
+    top: 0.6rem;
+  }
+}
+
+.header {
+  color: rgb(169, 169, 169);
+
+  &.miniRecipe {
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+}
+
+.hr {
+  &.bmiHeader {
+    margin-top: -1rem;
+    border-top: 2px solid #252525;
+  }
+  &.bmiBottom {
+    margin-top: -1rem;
+    border-top: 2px solid #252525;
+  }
+}
+
+.card {
+  background-color: $mainBackground !important;
+  border: 1px solid $secondary !important;
+  box-shadow: 5px 5px 5px $secondBackground !important;
+  border-radius: 20px !important;
+  max-width: 25rem !important;
+  margin: 0 auto !important;
+}
+
+.SearchBar {
+  max-width: 11rem;
+  margin: 0 auto;
+}
+@media (max-width: 769px) {
+  .SearchBar {
+    max-width: 12.5rem;
+  }
+}
+
+.loader {
+  margin: 0 auto;
+  border: 8px solid $secondBackground;
+  border-top: 8px solid $secondary;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.2s linear infinite;
+}
+
+.select {
+  width: 100%;
+  max-width: 11rem !important;
+  height: 2.5rem !important;
+  background-color: #2a343c;
+  color: #cbe5ff;
+  border: 3px solid #eedcff;
+  border-radius: 20px;
+  padding: 5px 5px 5px 15px;
+  margin: 0 auto;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+  margin-right: 2rem;
+  padding: 1rem 2rem 1rem 1rem;
+}
+
+
+img {
+ &.is-share-icon {
+   width: 4rem;
+ }
+  &.has-border {
+    box-shadow: 0px 0px 4px $secondary;
+  }
+}
+
+i {
+  &.is-yellow {
+    color: yellow;
+  }
+}

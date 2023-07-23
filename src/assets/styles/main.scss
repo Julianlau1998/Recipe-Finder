@@ -4,6 +4,7 @@
 @import './settings.scss';
 @import './recipes.scss';
 @import './transitions.scss';
+@import './components.scss';
 @import '~bulma';
 
 
@@ -25,177 +26,9 @@ body {
     padding: 0 1rem;
 }
 
-.select {
-    width: 100%;
-    max-width: 11rem;
-    height: 2.5rem !important;
-    background-color: #2a343c;
-    color: #cbe5ff;
-    border: 3px solid #eedcff;
-    border-radius: 20px;
-    padding: 5px 5px 5px 15px;
-    margin: 0 auto;
-}
-
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: transparent;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: 5px;
-    border: 1px solid #dfdfdf;
-    border-radius: 2px;
-    margin-right: 2rem;
-    padding: 1rem 2rem 1rem 1rem;
-  }
-
-.header {
-    color: rgb(169, 169, 169);
-
-    &.miniRecipe {
-        max-width: 22rem;
-        margin: 0 auto;
-    }
-}
-
-
-.button {
-    border: 2px solid $secondary !important;
-    border-radius: 20px;
-    padding: 0.5rem;
-    cursor: pointer;
-    margin: 0.5rem;
-
-    &.is-primary {
-        background-color: $secondBackground;
-        color: lightgray;
-        font-size: 1.3rem;
-    }
-    &.is-secondary {
-        background-color: $secondary;
-        color: black;
-        font-size: 1.3rem;
-    }
-    &.home {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 1.2rem;
-    }
-    &.is-bottom-center {
-        position: fixed;
-        bottom: 0rem;
-        left: 50%;
-        transform: translate(-55%, -50%);
-    }
-}
-
-.columns {
-    &.fixed-width {
-        max-width: 55rem;
-        margin: 0 auto;
-    }
-}
-
-i {
-   &.is-yellow {
-       color: yellow;
-   }
-}
-
-.is-share-icon {
-    width: 4rem;
-}
-
-.is-text {
-    max-width: 30rem;
-    text-align: left;
-    margin: 0 auto;
-}
-
-.hr {
-    &.bmiHeader {
-        margin-top: -1rem;
-        border-top: 2px solid #252525;
-    }
-    &.bmiBottom {
-        margin-top: -1rem;
-        border-top: 2px solid #252525;
-    }
-}
-
-.button:hover {
-    background-color: lightgray !important;
-    color: $secondBackground !important;
-}
-
-.loader {
-    margin: 0 auto;
-    border: 8px solid $secondBackground; /* Light grey */
-    border-top: 8px solid $secondary; /* Blue */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1.2s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.input {
-    background: transparent;
-    border: 2px solid #436d88;
-    border-radius: 5px;
-    padding: 10px;
-    color: lightgray;
-
-    &.is-secondary {
-        border: 3px solid $secondary;
-        border-radius: 20px;
-        margin: 0 auto;
-    }
-}
-
-.SearchBar {
-    max-width: 11rem;
-    margin: 0 auto;
-}
-
-@media (max-width: 769px) {
-    .SearchBar {
-        max-width: 12.5rem;
-    }
-}
-
-.icon {
-    &.is-allow-click {
-        pointer-events: all !important;
-        cursor: pointer;
-        z-index: 0 !important;
-    }
-    &.is-outlined {
-        -webkit-text-fill-color: transparent;
-        -webkit-text-stroke: 1px;
-    }
-    &.is-search-icon {
-        position: relative;
-        right: 2rem;
-        top: 0.6rem;
-    }
-}
-
-.input::placeholder {
-    color: gray;
-    opacity: 1;
-}
-
 .is-current-page {
     color: #eedcff;
 }
-
 .is-nav-element {
     font-size: 1.6rem;
 }
@@ -203,8 +36,5 @@ i {
 @media (min-width: 769px) {
     body {
         padding: 0 5rem;
-    }
-    .mt-2-desktop {
-        margin-top: 0.5rem !important;
     }
 }

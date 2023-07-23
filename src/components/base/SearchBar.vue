@@ -4,7 +4,7 @@
       <input
           :value="value"
           @input="$emit('input', $event.target.value)"
-          class="input is-success is-secondary"
+          class="input is-secondary"
           type="text"
           placeholder="Search"
       >

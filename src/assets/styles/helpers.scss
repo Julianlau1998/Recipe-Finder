@@ -17,6 +17,19 @@
     font-size: 100px;
 }
 
+.columns {
+  &.fixed-width {
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+}
+
+.is-text {
+  max-width: 30rem;
+  text-align: left;
+  margin: 0 auto;
+}
+
 .mt-7 {
     margin-top: 4rem !important;
 }
@@ -64,3 +77,10 @@
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
   }
+
+
+@media (min-width: 769px) {
+  .mt-2-desktop {
+    margin-top: 0.5rem !important;
+  }
+}
