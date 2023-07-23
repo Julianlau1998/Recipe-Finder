@@ -1,7 +1,12 @@
 <template>
   <div>
     <Recipe :recipe="recipe" @getRandom="getRandom" @changePage="$emit('changePage')" />
-    <button class="button is-primary is-bottom-center" @click="getRandom">
+    <button
+        class="button is-primary is-bottom-center"
+        @click="getRandom"
+        tabindex="1"
+        @keydown.enter="getRandom"
+    >
       Get Random Recipe
     </button>
   </div>

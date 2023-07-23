@@ -1,10 +1,16 @@
 <template>
   <p class="is-fourth is-pointer" :class="!shareAvailable ? 'mb-3' : ''">
-      <span @click="openCategory">
+      <span @click="openCategory" tabindex="1" @keydown.enter="openCategory">
         {{ category }}
       </span>
     &nbsp;
-    <span v-if="country !== 'Unknown'" @click="openCountry" class="mb-3 is-third is-pointer">
+    <span
+        v-if="country !== 'Unknown'"
+        @click="openCountry"
+        class="mb-3 is-third is-pointer"
+        tabindex="1"
+        @keydown.enter="openCountry"
+    >
       {{ country }}
     </span>
   </p>

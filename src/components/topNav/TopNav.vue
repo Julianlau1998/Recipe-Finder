@@ -2,14 +2,18 @@
     <div class="is-topnav has-text-left p-3 pb-4 pt-4">
         <div class="columns is-mobile">
             <div class="column pl-5 is-pointer">
-                <span @click="openHome">
+                <span @click="openHome" tabindex="1" @keydown.enter="openHome">
                     Recipe Finder
                 </span>
             </div>
             <div class="column settingsWrapper">
                 <div v-if="settings" class="settingsItems settings">
                     <span>
-                        <span @click="openFavorites" class="is-icon-container is-pointer mt-6 setting noselect">
+                        <span
+                            @click="openFavorites"
+                            class="is-icon-container is-pointer mt-6 setting noselect"
+                            tabindex="2   " @keydown.enter="openFavorites"
+                        >
                             <i class="fas fa-star is-smallIcon pr-1" />
                             Favorites
                         </span>
@@ -18,6 +22,7 @@
                 <i
                     class="fas fa-bars settings-icon is-pointer"
                     @click="settings=!settings"
+                    tabindex="1" @keydown.enter="settings=!settings"
                 />
             </div>
         </div>

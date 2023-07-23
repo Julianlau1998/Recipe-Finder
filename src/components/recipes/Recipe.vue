@@ -4,6 +4,8 @@
         class="fas fa-star icon is-pointer mt-2 mb-2"
         @click="toggleFavorite"
         :class="favorite ? 'is-yellow' : 'is-outlined'"
+        tabindex="1"
+        @keydown.enter="toggleFavorite  "
     />
     <categoryInfo
       :share-available="shareAvailable"
@@ -12,7 +14,7 @@
       :open-category="openCategory"
       :open-country="openCountry"
     />
-    <h1 class="header is-size-3">
+    <h1 class="header is-size-3" tabindex="1">
       {{ title }}
     </h1>
     <div v-if="shareAvailable" class="mt-negative-1">
@@ -23,6 +25,7 @@
         :class="!shareAvailable ? 'mt-3' : ''"
         :src="recipe.image ? recipe.image : 'https://via.placeholder.com/450'"
         :alt="`${recipe.title} image`"
+        tabindex="2"
     >
     <Instructions :recipe="recipe" />
   </div>

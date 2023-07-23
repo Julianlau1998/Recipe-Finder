@@ -5,7 +5,7 @@
         Ingredients:
       </h4>
       <div class="has-text-centered has-text-right-desktop is-small-text">
-        <p style="display: inline-block; text-align: left;">
+        <p style="display: inline-block; text-align: left;" tabindex="1">
         <span
             v-for="( ingredient, index ) in recipe.ingredients"
             :key="`ingredient-${index}`"
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="column is-8 has-text-left-mobile">
-      <p class="mb-6 is-text" style="white-space: pre-line">
+      <p class="mb-6 is-text" style="white-space: pre-line" tabindex="1">
         {{ instructions }}
       </p>
     </div>

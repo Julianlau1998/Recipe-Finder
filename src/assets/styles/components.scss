@@ -12,16 +12,19 @@
     color: lightgray !important;
     font-size: 1.3rem;
   }
+
   &.is-secondary {
     background-color: $secondary !important;
     color: black !important;
     font-size: 1.3rem;
   }
+
   &.home {
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1.2rem;
   }
+
   &.is-bottom-center {
     position: fixed;
     bottom: 0rem;
@@ -146,6 +149,9 @@ img {
  }
   &.has-border {
     box-shadow: 0px 0px 4px $secondary;
+  }
+  &.has-hover:hover {
+    border: 1px solid $secondary;
   }
 }
 
