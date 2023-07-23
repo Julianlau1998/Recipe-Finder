@@ -19,7 +19,7 @@
       <Share class="mt-negative-1" @share="share" />
     </div>
     <img
-        class="is-header-image mb-5"
+        class="is-header-image mb-5 has-border"
         :class="!shareAvailable ? 'mt-3' : ''"
         :src="recipe.image ? recipe.image : 'https://via.placeholder.com/450'"
         :alt="`${recipe.title} image`"
