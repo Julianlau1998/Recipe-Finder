@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="columns fixed-width is-vcentered is-centered">
+    <div v-if="showFilters" class="columns fixed-width is-vcentered is-centered">
       <div class="column is-3 is-vcentered pt-2 pb-0">
         <SearchBar
             v-if="!isSearchHidden"
@@ -72,6 +72,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    showFilters: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data () {

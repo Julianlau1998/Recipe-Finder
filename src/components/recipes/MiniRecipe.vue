@@ -26,6 +26,7 @@ export default {
   methods: {
     openRecipe () {
       this.$router.push({ name: 'recipe', params: { id: this.recipe.id } })
+      this.$router.go(0)
     }
   }
 }

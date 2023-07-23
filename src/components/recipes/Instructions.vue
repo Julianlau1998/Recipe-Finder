@@ -1,5 +1,5 @@
 <template>
-  <div class="columns mt-2-desktop">
+  <div class="columns mt-2-desktop pb-6">
     <div class="column is-4">
       <h4 class="header is-size-4 mb-3 has-text-right-desktop">
         Ingredients:
