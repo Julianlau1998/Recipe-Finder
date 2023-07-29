@@ -27,7 +27,7 @@
 
   &.is-bottom-center {
     position: fixed;
-    bottom: 0rem;
+    bottom: 0;
     left: 50%;
     transform: translate(-55%, -50%);
   }
@@ -106,13 +106,13 @@
   }
 }
 
-.loader {
+.spinner {
   margin: 0 auto;
-  border: 8px solid $secondBackground;
-  border-top: 8px solid $secondary;
+  border: 6px solid $secondBackground;
+  border-top: 6px solid $secondary;
   border-radius: 50%;
   width: 60px;
-  height: 60px;
+  height: 60px;;
   animation: spin 1.2s linear infinite;
 }
 

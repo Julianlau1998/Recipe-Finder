@@ -1,16 +1,16 @@
 <template>
   <div v-infinite-scroll="loadMore">
     <Recipes
-        @changeCategory="changeCategory"
-        @search="changeCategory(category, $event)"
-        @searchCountry="changeCategory('1', $event)"
         :recipes="recipes"
         :category="category"
         :categories="categories"
+        @changeCategory="changeCategory"
+        @search="changeCategory(category, $event)"
+        @searchCountry="changeCategory('1', $event)"
     />
     <div v-if="recipesModule.recipes.loading" class="columns is-centered mt-6">
       <div class="column is-half has-text-centered">
-        <div class="loader" />
+        <div class="spinner" />
       </div>
     </div>
   </div>

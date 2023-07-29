@@ -12,7 +12,7 @@
                         <span
                             @click="openFavorites"
                             class="is-icon-container is-pointer mt-6 setting noselect"
-                            tabindex="2   " @keydown.enter="openFavorites"
+                            tabindex="2"  @keydown.enter="openFavorites"
                         >
                             <i class="fas fa-star is-smallIcon pr-1" />
                             Favorites

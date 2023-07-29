@@ -67,12 +67,9 @@ export default {
     },
     swipeHandler (direction) {
       if (this.page === 0 && direction === 'left') {
-        this.componentTransitionName = 'swipe-component-left'
         this.page = 1
       } else if ( this.page === 1 && direction === 'right') {
-        this.componentTransitionName = 'swipe-component-right'
         this.page = 0
-        localStorage.setItem('page', 0)
       }
     }
   }

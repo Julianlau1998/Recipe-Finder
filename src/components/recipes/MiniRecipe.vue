@@ -8,7 +8,6 @@
         tabindex="1"
         @keydown.enter="openRecipe"
     >
-    <br>
     <h3 @click="openRecipe" class="header miniRecipe is-size-4 is-secondary is-pointer has-text-weight-bold	">
       {{ recipe.title }}
     </h3>
