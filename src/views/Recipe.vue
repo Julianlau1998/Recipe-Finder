@@ -6,7 +6,11 @@
       <h1 class="header is-size-2 mt-6 mb-2">
         Discover More Recipes
       </h1>
-      <recipes :recipes="recipes" :show-filters="false" />
+      <recipes
+          v-if="recipe.ingredients.length"
+          :recipes="recipes"
+          :show-filters="false"
+      />
     </span>
     <button class="button is-primary is-bottom-center" @click="goBack">
       Back
