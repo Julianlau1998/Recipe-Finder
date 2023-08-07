@@ -9,10 +9,9 @@
         mode="out-in"
         ref="componentTransition"
     >
-      <RandomRecipe @changePage="page=1" v-if="page===0" />
-      <DiscoverRecipes @home="page=0" @changePage="page=1" v-else />
+      <RandomRecipe v-if="page===0" @changePage="page=1" />
+      <DiscoverRecipes v-else @home="page=0" @changePage="page=1" />
     </transition>
-
   </div>
 </template>
 
@@ -67,9 +66,9 @@ export default {
     },
     swipeHandler (direction) {
       if (this.page === 0 && direction === 'left') {
-        this.page = 1
+        this.changePage(1)
       } else if ( this.page === 1 && direction === 'right') {
-        this.page = 0
+        this.changePage(0)
       }
     }
   }

@@ -5,9 +5,8 @@
         <SearchBar
             v-if="!isSearchHidden"
             v-model="fulltext"
-            @input="debounceSearch"
-            :fulltextProp="fulltext"
             :clearSearch="clearSearch"
+            @input="debounceSearch"
         />
       </div>
       <div class="column is-3 pt-2 pb-0">

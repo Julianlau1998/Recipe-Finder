@@ -4,11 +4,6 @@ export default {
     posting: false,
     data: {}
   },
-  mealDBRecipes: {
-    loading: false,
-    submitting: false,
-    data: {}
-  },
   recipes: {
     loading: false,
     submitting: false,

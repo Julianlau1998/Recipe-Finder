@@ -3,8 +3,8 @@ export function GET_RECIPE (state) {
   state.err = null
 }
 
-export function RECEIVE_RECIPE (state, note) {
-  state.recipe.data = note
+export function RECEIVE_RECIPE (state, recipe) {
+  state.recipe.data = recipe
   state.recipe.loading = false
 }
 

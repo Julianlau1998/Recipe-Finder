@@ -42,8 +42,7 @@ export default {
   props: {
     recipe: {
       type: Object,
-      required: true,
-      default: () => {}
+      required: true
     }
   },
   data () {
