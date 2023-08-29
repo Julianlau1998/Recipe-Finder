@@ -18,7 +18,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import Recipe from "@/components/recipes/Recipe";
+import Recipe from "@/components/recipes/Recipe"
+
 export default {
   name: 'HomeView',
   components: { Recipe },

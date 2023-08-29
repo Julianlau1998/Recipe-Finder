@@ -2,8 +2,8 @@
   <div v-infinite-scroll="loadMore">
     <Recipes
         :recipes="recipes"
-        :category="category"
         :categories="categories"
+        :category="category"
         @changeCategory="changeCategory"
         @search="changeCategory(category, $event)"
         @searchCountry="changeCategory('1', $event)"
